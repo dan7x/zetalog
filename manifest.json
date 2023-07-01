@@ -1,0 +1,30 @@
+{
+    "name": "Zetamac Progress Tracker",
+    "version": "1.0.0",
+    "description": "Chrome extension to automate progress tracking for zetamac.com scores.",
+    "manifest_version": 3,
+    "author": "Daniel Xiao",
+    "action":{
+        "default_popup": "popup/popup.html",
+        "default_title": "Zetatrack"
+    },
+    "permissions": [
+        "storage",
+        "identity"
+    ],
+    "background": {
+        "service_worker": "background.js",
+        "type": "module"
+    },
+    "minimum_chrome_version": "102",
+    "content_scripts": [
+        {
+          "matches": ["https://arithmetic.zetamac.com/*"],
+          "js": ["scripts/zetapoll.js"]
+        }
+    ],
+    "oauth2": {
+        "client_id": "500764194798-jlh5v74iinq02p3bu7ki5dgpmugo9hur.apps.googleusercontent.com",
+        "scopes": ["https://www.googleapis.com/auth/spreadsheets"]
+    }
+}

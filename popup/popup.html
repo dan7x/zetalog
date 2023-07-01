@@ -1,0 +1,81 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    <h1>Testing</h1>
+    <div>
+        <input type="text">
+        <br>
+        <input type="submit" id="sub0" value="Submit">
+        <input type="submit" id="clearlog" value="Clear Logs">
+    </div>
+</body>
+</html> -->
+
+<!-- Style via [https://codepen.io/lekoalabe/pen/PopjPvq](https://codepen.io/lekoalabe/pen/PopjPvq). -->
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Zetalog Popup Window</title>
+  <script src="popup.js"></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<link href="bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap.bundle.min.js"></script>
+
+<div class="bg">
+
+</div>
+
+    <main class="form-signin">
+
+        <h1 class="h1">Edit Target GSheet</h1>
+        <div class="showcase">
+            <label for="targsheetDisplay">Current Target Sheet</label>
+            <input type="text" class="form-control" id="targsheetDisplay" value="" disabled>
+        </div>
+        <div class="form-signin">
+            <form>
+                <button id="gotosheet" class="w-100 btn btn-lg">Go to sheet</button>
+            </form>
+        </div>
+        
+        <form id="gsheetform">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="gsheetID" placeholder="Enter GSheet ID" required>
+                <label for="gsheetID">GSheet ID</label>
+            </div>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="gsheetTab" placeholder="Enter GSheet Tab" required>
+                <label for="gsheetID">GSheet Tab</label>
+            </div>
+
+            <!-- <div class="checkbox mb-3">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" value="1" name="remember_me" id="rememberMeSwitch">
+                    <label class="form-check-label" for="rememberMeSwitch"> Remember me</label>
+                </div>
+            </div> -->
+            <br>
+            <button id="gsheetsubmit" class="w-100 btn btn-lg" type="submit">Save</button>
+        </form>
+        <!-- <p class="copyright">&copy; 2023</p> -->
+
+        <!-- maybe build out an in-extension records feature eventually. -->
+        <!-- <div class="form-signin">
+            <form action="records.html">
+                <button id="records" class="w-100 btn btn-lg" type="submit">View Records</button>
+            </form>
+        </div> -->
+    </main>
+  
+</body>
+</html>
+
