@@ -1,6 +1,7 @@
 /*
 Content script for https://arithmetic.zetamac.com/
 Useful test: https://arithmetic.zetamac.com/game?key=167ff21c (2 second game)
+https://arithmetic.zetamac.com/game?key=56de94f9 (2 second modified settings)
 
 This JS will be injected into the page's source to scrape the webpage.
 */
@@ -19,6 +20,48 @@ function submitPayload(payload){
         - update records in chrome.storage
     */
     console.log("Send payload", payload);
+
+    fillKeysBool = [
+        "add",	
+        "sub",	
+        "mul",	
+        "div"
+    ];
+    fillKeysNum = [
+        "add_left_min",	
+        "add_left_max",	
+        "add_right_min",	
+        "add_right_max",	
+        "mul_left_min",	
+        "mul_left_max",	
+        "mul_right_min",	
+        "mul_right_max"
+    ];
+    for(k of fillKeysBool){
+        if(!(k in payload)){
+            payload[k] = false;
+        }
+    }
+    for(k of fillKeysNum){
+        if(!(k in payload)){
+            payload[k] = 0;
+        }
+    }
+    if(!("duration" in payload)){
+        payload[k] = 120;
+    }
+    let allKeys = fillKeysBool.concat(fillKeysNum);
+    allKeys.push("duration");
+    allKeys.push("key");
+    allKeys.push("score");
+    allKeys.push("timestamp");
+
+    let tmp = {};
+    allKeys.forEach(c => tmp[c] = payload[c]);
+    payload = tmp;
+
+    console.log("Updated payload", payload);
+
     // send message to backend to be pushed to gsheet, chrome.storage, whatever.
     chrome.runtime.sendMessage({type: "game_over", payload: payload});
 }
@@ -80,7 +123,7 @@ let observer = new MutationObserver(mutations => {
                 const secondsLeft = parseInt(secondsRemaining.replace(SECONDS_STR, ""));
 
                 // if 0 seconds left, do gameover
-                if(secondsLeft === 0){
+                if(secondsLeft <= 0){
                     const correct = document.getElementsByClassName("correct");
                     if(correct.length > 0){
                         const score = correct[0].innerHTML.replace(SCORE_STR, "");
