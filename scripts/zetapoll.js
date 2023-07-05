@@ -48,7 +48,7 @@ function submitPayload(payload){
         }
     }
     if(!("duration" in payload)){
-        payload[k] = 120;
+        payload["duration"] = 120;
     }
     let allKeys = fillKeysBool.concat(fillKeysNum);
     allKeys.push("duration");
